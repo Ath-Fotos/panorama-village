@@ -1,0 +1,8 @@
+pre-commit:
+  parallel: true
+  skip: [merge, rebase]
+  commands:
+    biome:
+      glob: "*.{js,jsx,ts,tsx,json,css,html,md}"
+      run: node_modules/.bin/biome check --write --no-errors-on-unmatched --files-ignore-unknown=true --staged
+      stage_fixed: true
