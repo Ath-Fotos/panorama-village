@@ -1,0 +1,92 @@
+import { ArrowRight, Calendar, Car, Compass, MapPin, Mountain, Snowflake } from 'lucide-react';
+import { stats, villageInfo } from '../data/villageData';
+
+export default function Hero() {
+  const iconMap = {
+    Mountain: <Mountain className="w-5 h-5 text-emerald-400" />,
+    Car: <Car className="w-5 h-5 text-amber-400" />,
+    Snowflake: <Snowflake className="w-5 h-5 text-sky-400" />,
+    Compass: <Compass className="w-5 h-5 text-rose-400" />,
+  };
+
+  return (
+    <section
+      id="hero"
+      className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden"
+    >
+      {/* Background Image & Nature Gradient */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85"
+          alt="Οροσειρά Πίνδου και Πανόραμα Γρεβενών"
+          className="w-full h-full object-cover object-center scale-105 transform motion-safe:animate-subtle-zoom"
+        />
+        {/* Layered overlays for dramatic mountain ambiance & text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/70 to-stone-900/60" />
+        <div className="absolute inset-0 bg-radial-gradient from-transparent via-stone-950/40 to-stone-950/80" />
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+        {/* Top Tag */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-md shadow-lg">
+          <MapPin className="w-4 h-4 text-emerald-400" />
+          <span>Οροσειρά Πίνδου • Νομός Γρεβενών • Υψόμετρο 1.050μ.</span>
+        </div>
+
+        {/* Main Headings */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold font-serif-heading tracking-tight mb-4 text-stone-50 drop-shadow-md">
+          {villageInfo.name}
+        </h1>
+
+        <p className="text-xl sm:text-2xl md:text-3xl text-emerald-300 font-medium font-serif-heading italic mb-6">
+          «{villageInfo.subtitle}»
+        </p>
+
+        {/* Descriptive Text */}
+        <p className="max-w-3xl mx-auto text-base sm:text-lg text-stone-200 leading-relaxed mb-10 text-balance">
+          {villageInfo.heroDescription}
+        </p>
+
+        {/* Call to Actions */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+          <a
+            href="#events"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-base shadow-xl hover:shadow-emerald-900/40 transition-all flex items-center justify-center gap-2 group"
+          >
+            <Calendar className="w-5 h-5 text-emerald-200" />
+            <span>Προσεχείς Εκδηλώσεις & Νέα</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </a>
+
+          <a
+            href="#info"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-stone-900/80 hover:bg-stone-800/90 text-stone-100 font-semibold text-base border border-stone-700 backdrop-blur-md transition-all flex items-center justify-center gap-2"
+          >
+            <Compass className="w-5 h-5 text-amber-400" />
+            <span>Πεζοπορίες & Οδηγός Πρόσβασης</span>
+          </a>
+        </div>
+
+        {/* Key Statistics / Highlights Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
+          {stats.map((item) => (
+            <div
+              key={item.label}
+              className="bg-stone-900/70 hover:bg-stone-900/90 border border-stone-800/80 rounded-2xl p-4 backdrop-blur-md text-left transition-all hover:border-emerald-700/50 group"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="p-2 rounded-lg bg-stone-800/80 group-hover:bg-stone-800 transition-colors">
+                  {iconMap[item.icon]}
+                </span>
+              </div>
+              <div className="text-xl sm:text-2xl font-bold text-white font-serif-heading">
+                {item.value}
+              </div>
+              <div className="text-xs text-stone-300 mt-0.5">{item.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
