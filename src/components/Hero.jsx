@@ -17,15 +17,15 @@ export default function Hero() {
       id="hero"
       className="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden"
     >
-      {/* Background Image & Nature Gradient */}
+      {/* Background Image & Dark Ambiance Overlay */}
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85"
           alt="Οροσειρά Πίνδου και Πανόραμα Γρεβενών"
           className="w-full h-full object-cover object-center scale-105 transform motion-safe:animate-subtle-zoom"
         />
-        {/* Layered overlays for dramatic mountain ambiance & text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/70 to-stone-900/60" />
+        {/* Deep dark gradient overlay for crystal clear contrast */}
+        <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/80 to-stone-900/70" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
@@ -33,9 +33,9 @@ export default function Hero() {
         <div className="inline-flex justify-center mb-6">
           <Badge
             variant="emeraldDark"
-            className="px-4 py-1.5 text-xs sm:text-sm font-semibold gap-2 backdrop-blur-md shadow-lg border-emerald-500/40 text-emerald-300"
+            className="px-4 py-2 text-xs sm:text-sm font-semibold gap-2 backdrop-blur-md shadow-xl border-emerald-500/40 text-emerald-300 bg-stone-950/90"
           >
-            <MapPin className="w-4 h-4 text-emerald-400" />
+            <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>Οροσειρά Πίνδου • Νομός Γρεβενών • Υψόμετρο 1.050μ.</span>
           </Badge>
         </div>
@@ -54,50 +54,52 @@ export default function Hero() {
           {villageInfo.heroDescription}
         </p>
 
-        {/* Call to Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+        {/* Call to Actions - Spacious, comfortable width and generous padding */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 max-w-3xl mx-auto px-2">
           <Button
             variant="emerald"
-            size="lg"
-            className="w-full sm:w-auto gap-2 group shadow-xl"
+            size="hero"
+            className="w-full sm:w-auto px-8 py-4 text-base sm:text-lg font-bold shadow-2xl group flex-1 max-w-md"
             asChild
           >
-            <a href="#events">
-              <Calendar className="w-5 h-5 text-emerald-200" />
+            <a href="#events" className="flex items-center justify-center gap-2.5">
+              <Calendar className="w-5 h-5 text-emerald-200 shrink-0" />
               <span>Προσεχείς Εκδηλώσεις & Νέα</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform shrink-0" />
             </a>
           </Button>
 
           <Button
             variant="glass"
-            size="lg"
-            className="w-full sm:w-auto gap-2 text-stone-100"
+            size="hero"
+            className="w-full sm:w-auto px-8 py-4 text-base sm:text-lg font-bold shadow-2xl border border-stone-600/80 bg-stone-900/90 hover:bg-stone-800 text-stone-100 flex-1 max-w-md"
             asChild
           >
-            <a href="#info">
-              <Compass className="w-5 h-5 text-amber-400" />
+            <a href="#info" className="flex items-center justify-center gap-2.5">
+              <Compass className="w-5 h-5 text-amber-400 shrink-0" />
               <span>Πεζοπορίες & Οδηγός Πρόσβασης</span>
             </a>
           </Button>
         </div>
 
-        {/* Key Statistics / Highlights Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
+        {/* Key Statistics / Highlights Cards - High Contrast & High Readability */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
           {stats.map((item) => (
             <Card
               key={item.label}
-              className="bg-stone-900/70 hover:bg-stone-900/90 border-stone-800/80 p-4 backdrop-blur-md text-left transition-all hover:border-emerald-700/50 group text-white"
+              className="bg-stone-950/90 hover:bg-stone-900 border-stone-800 p-5 backdrop-blur-md text-left transition-all hover:border-emerald-700/60 shadow-2xl group text-white"
             >
-              <div className="flex items-center justify-between mb-2">
-                <span className="p-2 rounded-lg bg-stone-800/80 group-hover:bg-stone-800 transition-colors">
+              <div className="flex items-center justify-between mb-3">
+                <span className="p-2.5 rounded-xl bg-stone-900 border border-stone-800 group-hover:border-stone-700 transition-colors shadow-inner">
                   {iconMap[item.icon]}
                 </span>
               </div>
-              <div className="text-xl sm:text-2xl font-bold text-white font-serif-heading">
+              <div className="text-2xl sm:text-3xl font-extrabold text-stone-50 font-serif-heading tracking-tight mb-1">
                 {item.value}
               </div>
-              <div className="text-xs text-stone-300 mt-0.5">{item.label}</div>
+              <div className="text-xs sm:text-sm font-medium text-stone-300 leading-snug">
+                {item.label}
+              </div>
             </Card>
           ))}
         </div>
