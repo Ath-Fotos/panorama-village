@@ -1,10 +1,11 @@
 import { Clock, CloudSun, Droplets, Mountain, Wind } from 'lucide-react';
-import { weatherData } from '../data/villageData';
+import { Card } from '@/components/ui/card';
+import { weatherData } from '@/data/villageData';
 
 export default function WeatherWidget() {
   return (
     <section className="relative z-20 -mt-8 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-white rounded-2xl shadow-xl border border-stone-200/80 p-4 sm:p-6 backdrop-blur-md">
+      <Card className="p-4 sm:p-6 backdrop-blur-md shadow-xl border-stone-200/80">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           {/* Weather Highlights */}
           <div className="flex items-center gap-4">
@@ -68,7 +69,7 @@ export default function WeatherWidget() {
             </div>
           </div>
         </div>
-      </div>
+      </Card>
     </section>
   );
 }

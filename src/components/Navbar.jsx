@@ -1,6 +1,8 @@
 import { Bell, ChevronRight, CloudSun, Menu, Mountain, Phone, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { villageInfo, weatherData } from '../data/villageData';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { villageInfo, weatherData } from '@/data/villageData';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,10 +38,13 @@ export default function Navbar() {
         <div className="bg-emerald-900 text-emerald-50 px-4 py-2 text-xs md:text-sm font-medium border-b border-emerald-800/60 transition-all">
           <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 overflow-hidden">
-              <span className="hidden sm:inline-flex items-center gap-1 bg-emerald-700/80 px-2 py-0.5 rounded text-[11px] font-semibold uppercase tracking-wider text-emerald-200">
+              <Badge
+                variant="emeraldDark"
+                className="hidden sm:inline-flex gap-1 py-0.5 text-[11px]"
+              >
                 <Bell className="w-3 h-3" />
                 {villageInfo.emergencyAlert.tag}
-              </span>
+              </Badge>
               <p className="truncate">{villageInfo.emergencyAlert.text}</p>
             </div>
             <div className="flex items-center gap-3 shrink-0">
@@ -110,13 +115,12 @@ export default function Navbar() {
               <span className="text-emerald-400 font-medium">Πίνδος</span>
             </div>
 
-            <a
-              href="#info"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-semibold shadow-md transition-transform hover:scale-105"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              <span>Τηλέφωνα</span>
-            </a>
+            <Button variant="primary" size="sm" className="gap-1.5 rounded-full" asChild>
+              <a href="#info">
+                <Phone className="w-3.5 h-3.5" />
+                <span>Τηλέφωνα</span>
+              </a>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -134,7 +138,7 @@ export default function Navbar() {
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-stone-900/95 backdrop-blur-xl border-b border-stone-800 text-white px-4 pt-3 pb-6 space-y-2 mt-2 shadow-2xl animate-fade-in">
+          <div className="lg:hidden bg-stone-900/95 backdrop-blur-xl border-b border-stone-800 text-white px-4 pt-3 pb-6 space-y-2 mt-2 shadow-2xl animate-in fade-in">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -155,13 +159,11 @@ export default function Navbar() {
                   </span>
                 </div>
               </div>
-              <a
-                href="#info"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-medium text-sm transition-colors"
-              >
-                Οδηγός Πρόσβασης & Τηλέφωνα
-              </a>
+              <Button variant="primary" className="w-full" asChild>
+                <a href="#info" onClick={() => setMobileMenuOpen(false)}>
+                  Οδηγός Πρόσβασης & Τηλέφωνα
+                </a>
+              </Button>
             </div>
           </div>
         )}

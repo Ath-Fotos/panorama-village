@@ -1,6 +1,8 @@
 import { Camera, ZoomIn } from 'lucide-react';
 import { useState } from 'react';
-import { photoGallery } from '../data/villageData';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { photoGallery } from '@/data/villageData';
 import Lightbox from './Lightbox';
 
 export default function PhotoGallery() {
@@ -43,9 +45,11 @@ export default function PhotoGallery() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Camera className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Φωτογραφικό Κολάζ</span>
+          <div className="flex justify-center mb-3">
+            <Badge variant="emerald" className="gap-1.5 py-1 px-3">
+              <Camera className="w-3.5 h-3.5 text-emerald-700" />
+              <span>Φωτογραφικό Κολάζ</span>
+            </Badge>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold font-serif-heading text-stone-900 mb-4">
             Στιγμές & Τοπία από το Πανόραμα
@@ -59,25 +63,21 @@ export default function PhotoGallery() {
         {/* Filter Pills */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
           {galleryFilters.map((filter) => (
-            <button
+            <Button
               key={filter.id}
               type="button"
+              variant={activeFilter === filter.id ? 'default' : 'outline'}
+              size="sm"
               onClick={() => setActiveFilter(filter.id)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${
-                activeFilter === filter.id
-                  ? 'bg-stone-900 text-white shadow-md'
-                  : 'bg-white text-stone-700 hover:bg-stone-200/80 border border-stone-200'
-              }`}
             >
               {filter.label}
-            </button>
+            </Button>
           ))}
         </div>
 
         {/* Dynamic Collage Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[260px]">
           {filteredPhotos.map((photo, index) => {
-            // Determine custom spanning for masonry collage look
             const isLarge = photo.aspect === 'large';
             const isTall = photo.aspect === 'tall';
             const isWide = photo.aspect === 'wide';
@@ -102,9 +102,9 @@ export default function PhotoGallery() {
 
                 {/* Top tag */}
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 rounded-full bg-stone-900/80 backdrop-blur-md text-emerald-300 text-[11px] font-semibold tracking-wide border border-stone-700/50">
+                  <Badge variant="emeraldDark" className="backdrop-blur-md text-[11px]">
                     {photo.categoryLabel}
-                  </span>
+                  </Badge>
                 </div>
 
                 {/* Hover zoom icon */}

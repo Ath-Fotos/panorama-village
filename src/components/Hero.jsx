@@ -1,5 +1,8 @@
 import { ArrowRight, Calendar, Car, Compass, MapPin, Mountain, Snowflake } from 'lucide-react';
-import { stats, villageInfo } from '../data/villageData';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { stats, villageInfo } from '@/data/villageData';
 
 export default function Hero() {
   const iconMap = {
@@ -23,14 +26,18 @@ export default function Hero() {
         />
         {/* Layered overlays for dramatic mountain ambiance & text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/70 to-stone-900/60" />
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-stone-950/40 to-stone-950/80" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
         {/* Top Tag */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-semibold mb-6 backdrop-blur-md shadow-lg">
-          <MapPin className="w-4 h-4 text-emerald-400" />
-          <span>Οροσειρά Πίνδου • Νομός Γρεβενών • Υψόμετρο 1.050μ.</span>
+        <div className="inline-flex justify-center mb-6">
+          <Badge
+            variant="emeraldDark"
+            className="px-4 py-1.5 text-xs sm:text-sm font-semibold gap-2 backdrop-blur-md shadow-lg border-emerald-500/40 text-emerald-300"
+          >
+            <MapPin className="w-4 h-4 text-emerald-400" />
+            <span>Οροσειρά Πίνδου • Νομός Γρεβενών • Υψόμετρο 1.050μ.</span>
+          </Badge>
         </div>
 
         {/* Main Headings */}
@@ -49,30 +56,38 @@ export default function Hero() {
 
         {/* Call to Actions */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
-          <a
-            href="#events"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-base shadow-xl hover:shadow-emerald-900/40 transition-all flex items-center justify-center gap-2 group"
+          <Button
+            variant="emerald"
+            size="lg"
+            className="w-full sm:w-auto gap-2 group shadow-xl"
+            asChild
           >
-            <Calendar className="w-5 h-5 text-emerald-200" />
-            <span>Προσεχείς Εκδηλώσεις & Νέα</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
+            <a href="#events">
+              <Calendar className="w-5 h-5 text-emerald-200" />
+              <span>Προσεχείς Εκδηλώσεις & Νέα</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </Button>
 
-          <a
-            href="#info"
-            className="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-stone-900/80 hover:bg-stone-800/90 text-stone-100 font-semibold text-base border border-stone-700 backdrop-blur-md transition-all flex items-center justify-center gap-2"
+          <Button
+            variant="glass"
+            size="lg"
+            className="w-full sm:w-auto gap-2 text-stone-100"
+            asChild
           >
-            <Compass className="w-5 h-5 text-amber-400" />
-            <span>Πεζοπορίες & Οδηγός Πρόσβασης</span>
-          </a>
+            <a href="#info">
+              <Compass className="w-5 h-5 text-amber-400" />
+              <span>Πεζοπορίες & Οδηγός Πρόσβασης</span>
+            </a>
+          </Button>
         </div>
 
         {/* Key Statistics / Highlights Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
           {stats.map((item) => (
-            <div
+            <Card
               key={item.label}
-              className="bg-stone-900/70 hover:bg-stone-900/90 border border-stone-800/80 rounded-2xl p-4 backdrop-blur-md text-left transition-all hover:border-emerald-700/50 group"
+              className="bg-stone-900/70 hover:bg-stone-900/90 border-stone-800/80 p-4 backdrop-blur-md text-left transition-all hover:border-emerald-700/50 group text-white"
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="p-2 rounded-lg bg-stone-800/80 group-hover:bg-stone-800 transition-colors">
@@ -83,7 +98,7 @@ export default function Hero() {
                 {item.value}
               </div>
               <div className="text-xs text-stone-300 mt-0.5">{item.label}</div>
-            </div>
+            </Card>
           ))}
         </div>
       </div>
